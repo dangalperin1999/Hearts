@@ -23,6 +23,18 @@ public class Game {
         players[1] = bot2;
         players[2] = bot3;
 
+        System.out.println("Game rules:\n" +
+                "There are 4 players each player gets 13 cards\n" +
+                "Game starts with 2 of Clubs\n" +
+                "Each player puts one card when it's his turn\n" +
+                "Played card's suit must be lead suit or if there is no lead suit the player can play any card\n" +
+                "Card with Hearts suit can't be played on the first turn and if hearts were not broken\n" +
+                "Hearts are broken when a player plays a card with hearts suit\n" +
+                "Every round all played cards go into a trick\n" +
+                "Player that played the biggest card with lead suit wins the trick\n" +
+                "Winner of the trick gets points if the trick had cards with Hearts or Queen of Spades and starts next trick\n" +
+                "The game ends when a player gets 100 points and the winner is the player with smallest amount of points\n");
+
         Scanner sc = new Scanner(System.in);
         System.out.println("Type your name");
         String playerName = sc.nextLine();
@@ -30,7 +42,7 @@ public class Game {
 
         players[3] = player;
 
-        while(bot1.score != 100 || bot2.score != 100 || bot3.score != 100 || player.score != 100 || bot1.score > 100 || bot2.score > 100 || bot3.score > 100 || player.score > 100) {
+        while(bot1.score != 100 && bot2.score != 100 && bot3.score != 100 && player.score != 100 && bot1.score < 100 && bot2.score < 100 && bot3.score < 100 && player.score < 100) {
             deck.shuffle();
 
             for (int i = 0; i < 13; i++) {
@@ -77,9 +89,9 @@ public class Game {
                 }
             }
             Card cardPlayed = null;
-            Card newCard = null;
+            Card newCard;
             for (int i = 0; i < 13; i++) {
-                for (int j = index; j >= index-1 || j <= index-1; j++) {
+                for (int j = index; true; j++) {
                     if(players[j] == bot1 || players[j] == bot2 || players[j] == bot3){
                         if(j == index) {
                             cardPlayed = players[j].hand.botPlayCard(trick, round);
