@@ -18,7 +18,6 @@ public class Game {
 
     public void play(){
 
-        Player firstToPlay;
         players[0] = bot1;
         players[1] = bot2;
         players[2] = bot3;
